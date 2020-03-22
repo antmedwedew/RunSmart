@@ -11,9 +11,13 @@
     max-width: 950px;
     margin: 0 auto;
 }
+.title {
+    @include title
+}
 
 @import 'blocks/promo';
 @import 'blocks/header';
 @import 'blocks/buttons';
+@import 'blocks/advantages';
 
 @import 'base/media';

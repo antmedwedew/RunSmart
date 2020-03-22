@@ -1,18 +1,24 @@
 @media (max-width: 992px) {
     .container {
-        padding: 0 35px 0 35px;
+        padding: 0 25px 0 25px;
     }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
     .header {
         &__official {
             display: none;
         }
     }
+    .advantages {
+        &__descr {
+            width: 180px;
+            margin: 26px auto 0 auto; 
+        }
+    }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 575px) {
     .header {
         &__logo {
             img {
@@ -42,6 +48,32 @@
         &_main {
             margin: 67px auto 0 auto; 
         }
+    }
+    .advantages {
+        padding: 50px 0 50px 0;
+        &__icons {
+            flex-direction: column;
+            margin-top: 40px;
+        }
+        &__icon {
+            img {
+                width: 50px;
+            }
+        }
+        &__item {
+            margin-top: 20px;
+        }
+        &__title {
+            margin-top: 17px;
+        }
+        &__descr {
+            width: 100%;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+    }
+    .title {
+        font-size: 22px;
     }
 }
 
@@ -78,3 +110,5 @@
         }
     }
 }
+
+

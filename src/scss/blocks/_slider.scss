@@ -27,8 +27,9 @@
     .slick-dots {
         display: flex;
         justify-content: center;
-        margin: 0;
+        margin: 0 auto;
         list-style-type: none;
+        padding: 0;
         li {
             margin: 0 5px;
         }
@@ -45,6 +46,9 @@
         li.slick-active button {
             background-color: $main-color;
         }
+    }
+    .slick-slide {
+        outline: none;
     }
 }
 

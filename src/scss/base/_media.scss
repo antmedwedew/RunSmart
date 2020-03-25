@@ -2,8 +2,16 @@
     .container {
         padding: 0 25px 0 25px;
     }
+    .slider {
+        padding: 81px 0;
+        &__inner {
+            width: 100%;
+            img {
+                width: 100%;
+            }
+        }
+    }
 }
-
 @media (max-width: 768px) {
     .header {
         &__official {

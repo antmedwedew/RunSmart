@@ -1,9 +1,7 @@
 $(document).ready(function(){
     $('.slider__inner').slick({
-        prevArrow: `<button type="button" class="slick-prev"><img src="./icons/slick_prev.svg" alt="prev"></button>`,
-        nextArrow: `<button type="button" class="slick-next"><img src="./icons/slick_next.svg" alt="next"></button>`,
-        // autoplay: true,
-        // autoplaySpeed: 2000,
+        prevArrow: `<button type="button" class="slick-prev"><img src="./img/icons/slick_prev.svg" alt="prev"></button>`,
+        nextArrow: `<button type="button" class="slick-next"><img src="./img/icons/slick_next.svg" alt="next"></button>`,
         responsive: [
             {
                 breakpoint: 992,

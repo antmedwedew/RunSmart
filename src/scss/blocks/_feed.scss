@@ -10,10 +10,11 @@
             margin-bottom: 0;
         }
         &__foto {
+            border-radius: 100%;
             margin-right: 60px;
+            margin-top: 5px;
             width: 169px;
             height: 169px;
-            border-radius: 100%;
         }
         &__title {
             color: $dark;

@@ -35,12 +35,6 @@ let path = {
     clean: './build'
 }
 
-//default
-gulp.task('default', gulp.parallel('watch', 'server', 'styles'));
-//run build 
-gulp.task('build', gulp.parallel('clean', 'html:build', 'fonts:build', 'styles:build', 'js:build', 'jquery-slick'));
-
-
 //Server
 gulp.task('server', function () {
     browserSync.init({
@@ -87,7 +81,8 @@ gulp.task('html:build', function () {
 
 gulp.task('styles:build', function() {
     return gulp.src(path.src.cssCompile)
-          .pipe(gulp.dest(path.build.css));
+            .pipe(concat('style.min.css'))
+            .pipe(gulp.dest(path.build.css));
 });
 
 gulp.task('fonts:build', function () {
@@ -103,6 +98,12 @@ gulp.task('js:build', function () {
 gulp.task('clean', function (cb) {
     rimraf(path.clean, cb);
 });
+
+//default
+gulp.task('default', gulp.parallel('watch', 'server', 'styles'));
+
+//run build 
+gulp.task('build', gulp.parallel('clean', 'html:build', 'fonts:build', 'styles:build', 'js:build', 'jquery-slick'));
 
 
 

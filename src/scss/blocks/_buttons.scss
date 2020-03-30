@@ -20,4 +20,12 @@
         height: 55px;
         font-size: 16px;
     }
+    &_mini {
+        width: 131px;
+        height: 40px;
+        outline: none;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
 }

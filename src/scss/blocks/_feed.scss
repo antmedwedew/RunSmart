@@ -1,0 +1,38 @@
+.feed {
+    &__wrapper {
+        padding: 70px 0;
+    }
+    &-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 100px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+        &__foto {
+            margin-right: 60px;
+            width: 169px;
+            height: 169px;
+            border-radius: 100%;
+        }
+        &__title {
+            color: $dark;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        &__count {
+            margin-top: 10px;
+            color: $grey--light;
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 5px;
+        }
+        &__text {
+            margin-top: 19px;
+            color: $dark;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 19px;
+        }
+    }
+}

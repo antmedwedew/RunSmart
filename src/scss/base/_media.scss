@@ -58,6 +58,10 @@
         }
     }
     .button {
+        &:hover {
+            background-color: $main-color;
+            transition: none;
+        }
         &_main {
             margin: 67px auto 0 auto; 
         }

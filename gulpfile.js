@@ -30,7 +30,7 @@ let path = {
     watch: { 
         html: 'src/**/*.html',
         js: 'src/js/**/*.js',
-        style: 'src/scss/**/*.+(scss|sass)',
+        style: 'src/scss/**/*.+(scss|sass)'
     },
     clean: './build'
 }
@@ -59,8 +59,8 @@ gulp.task('styles', function() {
 
 //watch
 gulp.task('watch', function() {
-    gulp.watch(path.watch.style, gulp.parallel('styles'));
-    gulp.watch(path.src.html).on('change', browserSync.reload);
+    gulp.watch(path.watch.style, gulp.parallel('styles')),
+    gulp.watch([path.watch.js, path.watch.html]).on('change', browserSync.reload);
 });
 
 //jquery-slick

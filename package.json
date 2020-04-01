@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "jquery": "^3.4.1",
+    "jquery-validation": "^1.19.1",
+    "jquery.maskedinput": "^1.4.1",
     "slick-carousel": "^1.8.1"
   }
 }

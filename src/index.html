@@ -85,9 +85,9 @@
             <h2 class="consultation__header">Получите бесплатную консультацию <br> по подбору пульсометра</h2>
             <div class="consultation__descr">Просто заполните форму заявки <br> и мы перезвоним вам в течении 10 минут</div>
 
-            <form action="#" class="feed-form">
+            <form id="consultation-form" action="#" class="feed-form">
                 <input name="name" required type="text" placeholder="Ваше имя">
-                <input name="phone" required type="number" placeholder="Ваш телефон">
+                <input name="phone" required placeholder="Ваш телефон">
                 <input name="email" required type="email" placeholder="Ваше E-mail">
 
                 <button class="button button_submit">заказать консультацию</button>
@@ -538,9 +538,9 @@
             <div class="modal__subtitle">Просто заполните форму заявки</div>
             <div class="modal__descr">и мы перезвоним вам в течении 10 минут</div>
             <form action="#" class="feed-form feed-form_mt25">
-                <input name="name" required type="text" placeholder="Ваше имя">
-                <input name="phone" required type="number" placeholder="Ваш телефон">
-                <input name="email" required type="email" placeholder="Ваше E-mail">
+                <input name="name" type="text" placeholder="Ваше имя">
+                <input name="phone" placeholder="Ваш телефон">
+                <input name="email" type="email" placeholder="Ваше E-mail">
 
                 <button class="button button_submit">заказать консультацию</button>
             </form>
@@ -552,7 +552,7 @@
             <div class="modal__descr">Пульсометр Polar FT1</div>
             <form action="#" class="feed-form feed-form_mt25">
                 <input name="name" required type="text" placeholder="Ваше имя">
-                <input name="phone" required type="number" placeholder="Ваш телефон">
+                <input name="phone" required placeholder="Ваш телефон">
                 <input name="email" required type="email" placeholder="Ваше E-mail">
 
                 <button class="button button_submit">купить</button>
@@ -567,7 +567,10 @@
     </div>
 
     <script src="https://kit.fontawesome.com/d54098f2f0.js" crossorigin="anonymous"></script>
+    <script src="./js/jquery.min.js"></script>
     <script src="./js/slick.min.js"></script>
+    <script src="./js/jquery.validate.min.js"></script>
+    <script src="./js/jquery.maskedinput.js"></script>
     <script src="./js/script.js"></script>
 </body>
 </html>

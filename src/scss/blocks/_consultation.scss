@@ -13,4 +13,14 @@
         margin-top: 80px;
         font-weight: 500;
     }
+    .error {
+        border: 1px solid $main_color;
+    }
+    label.error {
+        border: none;
+        margin-bottom: 10px;
+        font-size: 14px;
+        font-weight: 300;
+        color: #ffffff;
+    }
 }

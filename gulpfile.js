@@ -6,7 +6,6 @@ const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS = require('gulp-clean-css');
 const rimraf = require('rimraf');
 const concat = require('gulp-concat');
-const jquery = require('jquery');
 
 
 let path = {
@@ -57,20 +56,41 @@ gulp.task('styles', function() {
             .pipe(browserSync.stream());
 });
 
+//jquery
+gulp.task('jquery', function () {
+    return gulp.src(['./node_modules/jquery/dist/jquery.min.js',
+    ])
+        .pipe(gulp.dest('src/js'));
+});
+
+//slick
+gulp.task('slick', function () {
+    return gulp.src(['./node_modules/slick-carousel/slick/slick.min.js'
+    ])
+        .pipe(gulp.dest('src/js'));
+});
+
+//validate
+gulp.task('slick', function () {
+    return gulp.src(['./node_modules/jquery-validation/dist/jquery.validate.min.js'
+    ])
+        .pipe(gulp.dest('src/js'));
+});
+
+//validate-mask
+gulp.task('slick', function () {
+    return gulp.src(['./node_modules/jquery.maskedinput/src/jquery.maskedinput.js'
+    ])
+        .pipe(gulp.dest('src/js'));
+});
+
 //watch
 gulp.task('watch', function() {
     gulp.watch(path.watch.style, gulp.parallel('styles')),
     gulp.watch([path.watch.js, path.watch.html]).on('change', browserSync.reload);
 });
 
-//jquery-slick
-gulp.task('jquery-slick', function () {
-    return gulp.src(['./node_modules/jquery/dist/jquery.min.js',
-      './node_modules/slick-carousel/slick/slick.min.js'
-    ])
-        .pipe(concat('slick.min.js'))
-        .pipe(gulp.dest('src/js'));
-});
+
 
 
 //gulp dist------------------------------------------------------------------------
@@ -100,10 +120,10 @@ gulp.task('clean', function (cb) {
 });
 
 //default
-gulp.task('default', gulp.parallel('watch', 'server', 'styles'));
+gulp.task('default', gulp.parallel('watch', 'server', 'styles', 'jquery', 'slick'));
 
 //run build 
-gulp.task('build', gulp.parallel('clean', 'html:build', 'fonts:build', 'styles:build', 'js:build', 'jquery-slick'));
+gulp.task('build', gulp.parallel('clean', 'html:build', 'fonts:build', 'styles:build', 'jquery', 'slick', 'js:build',));
 
 
 

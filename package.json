@@ -20,9 +20,11 @@
     "rimraf": "^3.0.2"
   },
   "dependencies": {
+    "animate.css": "^3.7.2",
     "jquery": "^3.4.1",
     "jquery-validation": "^1.19.1",
     "jquery.maskedinput": "^1.4.1",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "wowjs": "^1.1.3"
   }
 }

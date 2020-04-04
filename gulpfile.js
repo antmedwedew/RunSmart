@@ -84,6 +84,20 @@ gulp.task('slick', function () {
         .pipe(gulp.dest('src/js'));
 });
 
+//wowJs
+gulp.task('wowJs', function() {
+    return gulp.src(['./node_modules/wowjs/dist/wow.min.js'
+    ])
+        .pipe(gulp.dest('src/js'));
+});
+
+//animateCss
+gulp.task('animateCss', function() {
+    return gulp.src(['./node_modules/animate.css/animate.css'
+    ])
+        .pipe(gulp.dest('src/css'));
+});
+
 //watch
 gulp.task('watch', function() {
     gulp.watch(path.watch.style, gulp.parallel('styles')),
@@ -120,7 +134,7 @@ gulp.task('clean', function (cb) {
 });
 
 //default
-gulp.task('default', gulp.parallel('watch', 'server', 'styles', 'jquery', 'slick'));
+gulp.task('default', gulp.parallel('watch', 'server', 'styles', 'jquery', 'slick', 'wowJs', 'animateCss'));
 
 //run build 
 gulp.task('build', gulp.parallel('clean', 'html:build', 'fonts:build', 'styles:build', 'jquery', 'slick', 'js:build',));

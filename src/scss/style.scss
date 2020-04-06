@@ -1,7 +1,10 @@
+@import './libs/bootstrap-reboot.min.scss';
 @import 'base/fonts';
+@import './libs/animate.scss';
+@import './libs/slick.scss';
 @import 'base/mixins';
 @import 'base/variables';
-@import './node_modules/slick-carousel/slick/slick.scss';
+
 
 //--------------------------
 * {

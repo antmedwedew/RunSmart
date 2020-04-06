@@ -5,139 +5,134 @@ const rename = require('gulp-rename');
 const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS = require('gulp-clean-css');
 const rimraf = require('rimraf');
+const babel = require('gulp-babel')
 const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
+const imagemin = require('gulp-imagemin');
+const htmlmin = require('gulp-htmlmin');
+const del = require('del');
 
 
 let path = {
     build: { 
-        html: 'build/',
-        js: 'build/js/',
-        css: 'build/css/',
-        img: 'build/img/',
-        img: 'build/icons/',
-        fonts: 'build/fonts/'
+        html: 'dist/',
+        js: 'dist/js/',
+        css: 'dist/css/',
+        img: 'dist/img/',
+        icons: 'dist/icons/',
+        fonts: 'dist/fonts/',
+        mailer: 'dist/mailer/'
     },
     src: { 
-        html: 'src/[^_]*.html', 
-        js: 'src/js/*.js', 
-        styleSass: 'src/scss/**/*.+(scss|sass)', 
-        img: 'src/images/**/*.{jpg,jpeg,png}', 
+        html: 'src/*.html', 
+        js: 'src/js/*.js',
+        jsmin: ['src/js/*.js', 'src/js/*min.js'],
+        Sass: 'src/scss/**/*.+(scss|sass)',
+        icons: 'src/icons/**/*.+(png|svg)', 
+        img: 'src/img/**/*.+(jpg|jpeg|png)', 
         fonts: 'src/fonts/**/*.*',
-        cssCompile: 'src/css/**/*.*',
-        css: 'src/css/'
+        mailer: 'src/mailer/**/*.php'
     },
     watch: { 
-        html: 'src/**/*.html',
-        js: 'src/js/**/*.js',
-        style: 'src/scss/**/*.+(scss|sass)'
-    },
-    clean: './build'
+        html: 'dist/*.html',
+        js: 'dist/js/**/*.js',
+        style: 'dist/scss/**/*.+(scss|sass|css)'
+    }
 }
 
 //Server
 gulp.task('server', function () {
     browserSync.init({
         server: {
-            baseDir: "src"
+            baseDir: "dist"
         }
     });
 });
 
 //Sass
 gulp.task('styles', function() {
-    return gulp.src(path.src.styleSass)
+    return gulp.src(path.src.Sass)
             .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
             .pipe(rename({
                 prefix: '',
                 suffix: '.min',
             }))
+            .pipe(autoprefixer({
+                browsers: ['last 4 versions']
+            }))
             .pipe(cleanCSS({compatibility: 'ie8'}))
-            .pipe(gulp.dest(path.src.css))
+            .pipe(gulp.dest(path.build.css))
             .pipe(browserSync.stream());
 });
 
-//jquery
-gulp.task('jquery', function () {
-    return gulp.src(['./node_modules/jquery/dist/jquery.min.js',
-    ])
-        .pipe(gulp.dest('src/js'));
-});
-
-//slick
-gulp.task('slick', function () {
-    return gulp.src(['./node_modules/slick-carousel/slick/slick.min.js'
-    ])
-        .pipe(gulp.dest('src/js'));
-});
-
-//validate
-gulp.task('slick', function () {
-    return gulp.src(['./node_modules/jquery-validation/dist/jquery.validate.min.js'
-    ])
-        .pipe(gulp.dest('src/js'));
-});
-
-//validate-mask
-gulp.task('slick', function () {
-    return gulp.src(['./node_modules/jquery.maskedinput/src/jquery.maskedinput.js'
-    ])
-        .pipe(gulp.dest('src/js'));
-});
-
-//wowJs
-gulp.task('wowJs', function() {
-    return gulp.src(['./node_modules/wowjs/dist/wow.min.js'
-    ])
-        .pipe(gulp.dest('src/js'));
-});
-
-//animateCss
-gulp.task('animateCss', function() {
-    return gulp.src(['./node_modules/animate.css/animate.css'
-    ])
-        .pipe(gulp.dest('src/css'));
-});
-
-//watch
-gulp.task('watch', function() {
-    gulp.watch(path.watch.style, gulp.parallel('styles')),
-    gulp.watch([path.watch.js, path.watch.html]).on('change', browserSync.reload);
-});
-
-
-
-
-//gulp dist------------------------------------------------------------------------
-gulp.task('html:build', function () {
+//html
+gulp.task('html', function () {
     return gulp.src(path.src.html)
-    .pipe(gulp.dest('build'));
+        .pipe(htmlmin({ collapseWhitespace: true }))
+        .pipe(gulp.dest(path.build.html));
 });
 
-gulp.task('styles:build', function() {
-    return gulp.src(path.src.cssCompile)
-            .pipe(concat('style.min.css'))
-            .pipe(gulp.dest(path.build.css));
-});
-
-gulp.task('fonts:build', function () {
-    return gulp.src(path.src.fonts)
-        .pipe(gulp.dest(path.build.fonts));
-});
-
-gulp.task('js:build', function () {
+//scripts js
+gulp.task('js', function () {
     return gulp.src(path.src.js)
         .pipe(gulp.dest(path.build.js));
 });
 
-gulp.task('clean', function (cb) {
-    rimraf(path.clean, cb);
+//js min
+gulp.task('jsmin', function () {
+    return gulp.src(path.src.jsmin)
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
+        .pipe(uglify())
+        .pipe(rename({
+            prefix: '',
+            suffix: '.min'
+        }))
+        .pipe(gulp.dest(path.build.js));
+});
+
+//fonts
+gulp.task('fonts', function () {
+    return gulp.src(path.src.fonts)
+        .pipe(gulp.dest(path.build.fonts));
+});
+
+//icons
+gulp.task('icons', function () {
+    return gulp.src(path.src.icons)
+        .pipe(gulp.dest(path.build.icons));
+});
+
+//mailer
+gulp.task('mailer', function () {
+    return gulp.src(path.src.mailer)
+        .pipe(gulp.dest(path.build.mailer));
+});
+
+//images
+gulp.task('images', function () {
+    return gulp.src(path.src.img)
+        .pipe(imagemin({
+            progressive: true
+        }))
+        .pipe(gulp.dest(path.build.img));
+});
+
+//watch
+gulp.task('watch', function() {
+    gulp.watch(path.watch.style, gulp.parallel('styles'));
+    gulp.watch(path.watch.html).on('change', gulp.parallel('html'));
+    gulp.watch(path.watch.js).on('change', gulp.parallel('jsmin', 'js'));
+});
+
+// clean
+gulp.task('clean', function() {
+    return del.sync('dist');
 });
 
 //default
-gulp.task('default', gulp.parallel('watch', 'server', 'styles', 'jquery', 'slick', 'wowJs', 'animateCss'));
-
-//run build 
-gulp.task('build', gulp.parallel('clean', 'html:build', 'fonts:build', 'styles:build', 'jquery', 'slick', 'js:build',));
+gulp.task('default', gulp.parallel('watch', 'clean', 'server', 'html', 'styles', 'jsmin', 'js', 'icons', 'images', 'fonts', 'mailer'));
 
 
 

@@ -6,7 +6,7 @@
 
 # production
 /build
-
+.bowerrc
 # misc
 .DS_Store
 .env.local

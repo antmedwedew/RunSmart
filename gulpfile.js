@@ -101,6 +101,9 @@ gulp.task('fonts', function () {
 //icons
 gulp.task('icons', function () {
     return gulp.src(path.src.icons)
+        .pipe(imagemin({
+            progressive: true
+        }))
         .pipe(gulp.dest(path.build.icons));
 });
 

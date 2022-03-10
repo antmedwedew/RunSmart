@@ -1,5 +1,4 @@
-# RunSmart
-this project is for educational layout of the landing page
+# RunSmart. Верстка лендинга
 
-# link to view
+# Ссылка
 https://antmedwedew.github.io/RunSmart/dist/index.html
